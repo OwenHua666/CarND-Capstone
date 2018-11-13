@@ -92,7 +92,7 @@ class WaypointUpdater(object):
             p = Waypoint()
             p.pose = wp.pose
 
-            stop_idx = max(self.stop_line_wp - closest_idx - 2, 0)
+            stop_idx = max(self.stop_line_wp - closest_idx - 5, 0)
             dist = self.distance(waypoints, i, stop_idx)
             vel = math.sqrt(2 * MAX_DECEL * dist)
             if vel < 1:
