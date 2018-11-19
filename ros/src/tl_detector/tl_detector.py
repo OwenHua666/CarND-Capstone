@@ -29,6 +29,7 @@ class TLDetector(object):
         self.waypoint_tree = None
         self.camera_image = None
         self.lights = []
+	self.image_count = 0
 
         sub1 = rospy.Subscriber('/current_pose', PoseStamped, self.pose_cb)
         sub2 = rospy.Subscriber('/base_waypoints', Lane, self.waypoints_cb)
@@ -79,6 +80,10 @@ class TLDetector(object):
 
         """
         self.has_image = True
+	self.image_count += 1
+	if self.image_count % 3 != 0:
+	    return
+
         self.camera_image = msg
         light_wp, state = self.process_traffic_lights()
 
